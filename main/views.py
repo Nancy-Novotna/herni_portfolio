@@ -1,7 +1,6 @@
 from django.shortcuts import render
-
-from main.models import Games
-
+from django.db import connection
+from main.models import *
 
 
 # Create your views here.
@@ -13,6 +12,18 @@ def index(request):
 
 def hry(request):
     games = Games.objects.all()
+    devs = Developer.objects.all()
+
+    with connection.cursor() as cursor:
+        cursor.execute("""
+                    SELECT `games`.`title`, `genre`.`type`
+                    FROM `games`, `genre`, `filter_genre`
+                    WHERE `filter_genre`.`id_game`=`games`.`id_game` AND `filter_genre`.`id_genre`=`genre`.`id_genre`;
+                    """)
+        genres = cursor.fetchall()
+
     return render(request, "main/games.php", {
-        'games': games
+        'games': games,
+        'devs': devs,
+        'genres': genres
     })

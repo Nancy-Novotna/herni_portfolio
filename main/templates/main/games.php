@@ -1,9 +1,18 @@
 {% extends "main/layout.php" %}
 <?php
 $pageName = 'Games';
-$pageStyle = 'background-color: red;'
-    ?>
+$pageStyle = 'background-color: red;';
 
+$sqlGenre = "SELECT `games`.`title`, `genre`.`type` FROM `games`, `genre`, `filter_genre` WHERE `filter_genre`.`id_game`=`games`.`id_game` AND `filter_genre`.`id_genre`=`genre`.`id_genre`;";
+$resultsGenre = mysqli_query($conn, $sqlGenre);
+?>
+<!-- <?php
+if ($resultCheckGenre > 0) {
+    while ($row = mysqli_fetch_assoc($resultsGenre)) {
+        echo '|' . $row['type'] . '|' . PHP_EOL;
+    }
+}
+?> -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,18 +25,32 @@ $pageStyle = 'background-color: red;'
 <body>
     {% block content %}
     {% include "main/text.php" %}
-    {% for hra in games %}
-    <div class="bg-body-secondary flex-row justify-content-center align-items-center">
-        <table>
-            <tr class="flex-row">
-                <td>{{ hra.title }}</td>
-                <td>{{ hra.price }}</td>
-            </tr>
-        </table>
+    <div class="flex-column flex-row" style="width: 500px; grid-auto-columns: 50px;">
+        {% for hra in games %}
+        <div class="border rounded-3 overflow-auto">
+            <table class="table table-striped mb-0">
+                <tr class="">
+                    <td class="">{{ hra.title }}: {{ hra.price }}</td>
+            </table>
+        </div>
+        {% empty %}
+        <p>No games found.</p>
+        {% endfor %}
+
+        <br>
+
+        <div>
+            {% for genre in genres %}
+            <table class="table table-striped mb-0">
+                <tr>
+                    <td>{{ genre }}</td>
+                </tr>
+            </table>
+            {% endfor %}
+        </div>
+
     </div>
-    {% empty %}
-    <p>No games found.</p>
-    {% endfor %}
+
     {% endblock %}
 </body>
 

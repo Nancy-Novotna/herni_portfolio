@@ -28,8 +28,10 @@ class Developer(models.Model):
 
 
 class FilterAvail(models.Model):
-    id_game = models.ForeignKey('Games', models.DO_NOTHING, db_column='id_game')
-    id_avail = models.ForeignKey(Availability, models.DO_NOTHING, db_column='id_avail')
+    id_game = models.ForeignKey(
+        'Games', models.DO_NOTHING, db_column='id_game')
+    id_avail = models.ForeignKey(
+        Availability, models.DO_NOTHING, db_column='id_avail')
 
     class Meta:
         managed = False
@@ -37,17 +39,22 @@ class FilterAvail(models.Model):
 
 
 class FilterDev(models.Model):
-    id_game = models.ForeignKey('Games', models.DO_NOTHING, db_column='id_game')
-    id_dev = models.ForeignKey(Developer, models.DO_NOTHING, db_column='id_dev')
+    id_game = models.ForeignKey(
+        'Games', models.DO_NOTHING, db_column='id_game')
+    id_dev = models.ForeignKey(
+        Developer, models.DO_NOTHING, db_column='id_dev')
 
     class Meta:
         managed = False
         db_table = 'filter_dev'
 
 
+
 class FilterGenre(models.Model):
-    id_game = models.ForeignKey('Games', models.DO_NOTHING, db_column='id_game')
-    id_genre = models.ForeignKey('Genre', models.DO_NOTHING, db_column='id_genre')
+    id_game = models.ForeignKey(
+        'Games', models.DO_NOTHING, db_column='id_game')
+    id_genre = models.ForeignKey(
+        'Genre', models.DO_NOTHING, db_column='id_genre')
 
     class Meta:
         managed = False
@@ -55,8 +62,10 @@ class FilterGenre(models.Model):
 
 
 class FilterPub(models.Model):
-    id_game = models.ForeignKey('Games', models.DO_NOTHING, db_column='id_game')
-    id_pub = models.ForeignKey('Publisher', models.DO_NOTHING, db_column='id_pub')
+    id_game = models.ForeignKey(
+        'Games', models.DO_NOTHING, db_column='id_game')
+    id_pub = models.ForeignKey(
+        'Publisher', models.DO_NOTHING, db_column='id_pub')
 
     class Meta:
         managed = False
