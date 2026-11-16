@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("lidi/", views.jmena, name="people"),
+    path("hry/", views.hry, name="games"),
     # path("<slug:slug>/", views.videogame, name="videogame"),
 ]

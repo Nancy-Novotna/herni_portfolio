@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from .models import Names
+
+from main.models import Games
+
 
 
 # Create your views here.
@@ -9,8 +11,8 @@ def index(request):
     return render(request, "main/index.php")
 
 
-def jmena(request):
-    names = Names.objects.using('xampp').all()
-    return render(request, "main/index.php", {
-        'names': names
+def hry(request):
+    games = Games.objects.all()
+    return render(request, "main/games.php", {
+        'games': games
     })

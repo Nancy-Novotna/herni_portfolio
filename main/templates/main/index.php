@@ -23,12 +23,12 @@ $pageStyle = 'background-color: blue;'
     </div> -->
 
     <br>
-    {% for clovek in names %}
+    {% for hra in hry %}
     <div>
-        <p>{{ clovek.name }}: {{ clovek.pet }}</p>
+        <p>{{ hra.name }}: {{ hra.description }}</p>
     </div>
     {% empty %}
-    <p>No names found.</p>
+    <p>No games found.</p>
     {% endfor %}
 
     {% endblock %}
