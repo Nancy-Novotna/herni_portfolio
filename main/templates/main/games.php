@@ -26,29 +26,48 @@ if ($resultCheckGenre > 0) {
     {% block content %}
     {% include "main/text.php" %}
     <div class="flex-column flex-row" style="width: 500px; grid-auto-columns: 50px;">
-        {% for hra in games %}
         <div class="border rounded-3 overflow-auto">
             <table class="table table-striped mb-0">
-                <tr class="">
-                    <td class="">{{ hra.title }}: {{ hra.price }}</td>
+                <thead>
+                    <th>Game</th>
+                </thead>
+                {% for hra in games %}
+                <tbody>
+                    <td>
+                        {{ hra.title }}:
+                        {% if hra.price == 0 %}
+                        Free!
+                        {% else %}
+                        {{ hra.price }} euro
+                    </td>
+                    {% endif %}
+
+                    {% empty %}
+                    <p>No games found.</p>
+                    {% endfor %}
+                </tbody>
             </table>
         </div>
-        {% empty %}
-        <p>No games found.</p>
-        {% endfor %}
 
         <br>
 
-        <div>
-            {% for genre in genres %}
+        <div class="border rounded-3 overflow-auto">
             <table class="table table-striped mb-0">
-                <tr>
-                    <td>{{ genre }}</td>
-                </tr>
-            </table>
-            {% endfor %}
-        </div>
+                <thead>
+                    <tr>
+                        <th>Tags</th>
+                    </tr>
+                </thead>
+                {% for genre in genres %}
 
+                <tbody>
+                    <tr>
+                        <td>{{ genre }}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
     </div>
 
     {% endblock %}

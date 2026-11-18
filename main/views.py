@@ -22,8 +22,9 @@ def hry(request):
                     """)
         genres = cursor.fetchall()
 
+
     return render(request, "main/games.php", {
         'games': games,
         'devs': devs,
-        'genres': genres
+        'genres': genres,
     })
